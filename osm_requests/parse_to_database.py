@@ -2,7 +2,7 @@ import pymysql
 import json
 import config
 
-def parse_to_database(data):
+def parse_to_database():
     conn = open_connection()
 
     # Check if connection was successful
@@ -64,6 +64,9 @@ def parse_to_database(data):
         # Commit changes
         print("Committing changes...")
         conn.commit()
+
+        # Close connection
+        conn.close()
 
 def open_connection():
     return pymysql.connect(host=config.mysql_host, port=config.mysql_port, user=config.mysql_user, passwd=config.mysql_pass, db=config.mysql_database)

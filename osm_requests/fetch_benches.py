@@ -1,5 +1,7 @@
 import requests
 import json
+import os
+from osm_requests import parse_to_database
 
 
 def fetch_osm_benches():
@@ -21,5 +23,9 @@ def fetch_osm_benches():
     return response.json()
 
 def store_osm_benches():
+    # Delete old benches.json file
+    os.remove('data/benches.json')
+
     with open('data/benches.json', 'w') as outfile:
         json.dump(fetch_osm_benches(), outfile)
+    parse_to_database.parse_to_database()

@@ -1,8 +1,14 @@
 version: "3"
 services:
   wandelserver:
-    image: ghcr.io/siebsie23/wandelbankje-server:main
+    image: ghcr.io/siebsie23/wandelbankje-server:latest
     restart: unless-stopped
+    networks:
+      - backend
+  wandeladmin:
+    image: ghcr.io/siebsie23/wandelbankje-admin:latest
+    restart: unless-stopped
+    ports: "80:80"
     networks:
       - backend
   mysql:

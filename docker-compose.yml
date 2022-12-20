@@ -1,9 +1,7 @@
 version: "3"
 services:
   wandelserver:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/siebsie23/wandelbankje-server:main
     restart: unless-stopped
     networks:
       - backend

@@ -1,5 +1,5 @@
-import mysql.connector
+import pymysql
 
 def parse_to_database(data):
-    conn = mysql.connector.connect(user='root', password='wandelBankjePass@123', host='mysql', database='wandelbankje_db')
+    conn = pymysql.connect(host='mysql', port=3306, user='root', passwd='wandelBankjePass@123', db='wandelbankje_db')
     print(conn)

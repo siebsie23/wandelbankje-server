@@ -8,7 +8,8 @@ services:
   wandeladmin:
     image: ghcr.io/siebsie23/wandelbankje-admin:latest
     restart: unless-stopped
-    ports: "80:80"
+    ports: 
+      - "80:80"
     networks:
       - backend
   mysql:

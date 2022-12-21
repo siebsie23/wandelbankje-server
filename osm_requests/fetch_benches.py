@@ -18,7 +18,9 @@ def fetch_osm_benches():
     >;
     out skel qt;
     """
-    response = requests.post(url, data=query)
+    response = requests.post(url, data=query, headers={
+        'User-Agent': 'Wandelbankje (Linux; x86_64) Python/3.8.5',
+    })
     print('Done fetching benches from OSM.')
     return response.json()
 

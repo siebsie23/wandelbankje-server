@@ -8,10 +8,12 @@ services:
   wandeladmin:
     image: ghcr.io/siebsie23/wandelbankje-admin:latest
     restart: unless-stopped
-    ports: 
+    ports:
       - "80:80"
     networks:
       - backend
+    volumes:
+      - .:/var/www/html
   mysql:
     container_name: database
     image: mysql

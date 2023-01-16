@@ -18,20 +18,9 @@ def parse_to_database():
     if result:
         print("Table benches already exists")
     else:
-        # Create benches table
-        cur.execute("""
-          CREATE TABLE `benches` (
-            `id` BIGINT NOT NULL AUTO_INCREMENT,
-            `name` VARCHAR(255) DEFAULT NULL COMMENT 'name generated on request',
-            `coordinates` POINT NOT NULL,
-            `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-            `deleted_at` TIMESTAMP NULL DEFAULT NULL,
-            SPATIAL INDEX `SPATIAL` (`coordinates`),
-            PRIMARY KEY (`id`)
-          )
-        """)
-        print("Table benches created")
+        print("Whoops! Benches table does not exist, can't import data.")
+        conn.close()
+        return
 
     # Close connection
     conn.close()

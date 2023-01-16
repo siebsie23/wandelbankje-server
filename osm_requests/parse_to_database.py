@@ -1,6 +1,7 @@
 import pymysql
 import json
 import config
+import time
 
 def parse_to_database():
     conn = open_connection()
@@ -25,6 +26,9 @@ def parse_to_database():
     # Close connection
     conn.close()
 
+    # Set the datetime variable
+    datetime = time.strftime('%Y-%m-%d %H:%M:%S')
+
     # Load data from OSM benches.json file
     print("Loading data from OSM benches.json file...")
     with open('./data/benches.json') as json_file:
@@ -46,8 +50,8 @@ def parse_to_database():
 
             # Insert data into database
             cur.execute("""
-              INSERT INTO benches (id, coordinates) VALUES (%s, POINT(%s, %s))
-            """, (bench['id'], bench['lon'], bench['lat']))
+              INSERT INTO benches (id, coordinates, created_at) VALUES (%s, POINT(%s, %s), %s)
+            """, (bench['id'], bench['lon'], bench['lat'], datetime))
             print("Bench with id " + str(bench['id']) + " inserted")
 
         # Commit changes
